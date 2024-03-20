@@ -20,7 +20,7 @@ class RegisterForm(forms.ModelForm):
     def clean_username(self):
         username = self.cleaned_data.get('username')
 
-        if len(username)<5 and len(username)>30:
+        if len(username)<5 or len(username)>30:
             raise forms.ValidationError("Username 5 va 30 orasida bo'lishi kerak")
         return username
 
@@ -34,3 +34,10 @@ class RegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput())
     password = forms.CharField(widget=forms.PasswordInput())
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+
+        if len(username)<5 or len(username)>30:
+            raise forms.ValidationError("Username 5 va 30 orasida bo'lishi kerak")
+        return username

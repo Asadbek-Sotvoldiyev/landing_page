@@ -33,3 +33,11 @@ class LoginView(View):
                 return redirect('index')
         return render(request, 'users/login.html', {'form':form})
 
+def logout_user(request):
+    logout(request)
+    return redirect('index')
+
+class ProfileView(View):
+    def get(self, request):
+        return render(request, 'users/profile.html')
+
