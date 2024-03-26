@@ -1,0 +1,13 @@
+.form-container {
+        display: flex;
+        justify-content: center; /* Elementlarni konteyner o'rtasida joylashtirish */
+        align-items: center; /* Elementlarni vertikal o'rtada joylashtirish */
+        height: 100vh; /* Konteyner bo'yi (ekran balandligi) */
+    }
+
+    .form-control {
+        width: 50%; /* Forma kengligi */
+    }
+.centered {
+    text-align: center;
+}

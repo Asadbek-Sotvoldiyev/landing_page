@@ -1,9 +1,15 @@
+from cProfile import Profile
+
 from django import forms
 from django.contrib.auth.models import User
 
 class RegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-    password2 = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control w-100'}))
+    email = forms.CharField(label="", widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control w-100'}))
+    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control w-100'}))
+    password2 = forms.CharField(label="", widget=forms.PasswordInput(attrs={'placeholder': 'Confirm password', 'class': 'form-control w-100'}))
+    first_name = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder': 'First name', 'class': 'form-control w-100'}))
+    last_name = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder': 'Last name', 'class': 'form-control w-100'}))
 
     class Meta:
         model = User
@@ -32,8 +38,8 @@ class RegisterForm(forms.ModelForm):
         return email
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput())
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control w-100'}))
+    password = forms.CharField(label="",widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control w-100'}))
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -41,3 +47,16 @@ class LoginForm(forms.Form):
         if len(username)<5 or len(username)>30:
             raise forms.ValidationError("Username 5 va 30 orasida bo'lishi kerak")
         return username
+
+class ProfileForm(forms.ModelForm):
+    username = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control w-100'}))
+    first_name = forms.CharField(label="", widget=forms.TextInput(
+        attrs={'placeholder': 'First name', 'class': 'form-control w-100'}))
+    last_name = forms.CharField(label="", widget=forms.TextInput(
+        attrs={'placeholder': 'Last name', 'class': 'form-control w-100'}))
+    email = forms.CharField(disabled=True ,label="", widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control w-100'}))
+
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', "email"]

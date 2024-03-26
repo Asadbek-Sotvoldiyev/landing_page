@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, ProfileForm
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 
@@ -14,7 +14,7 @@ class RegisterView(View):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            return redirect('index')
+            return redirect('users:login')
         return render(request, 'users/register.html', {'form':form})
 
 class LoginView(View):
@@ -39,5 +39,12 @@ def logout_user(request):
 
 class ProfileView(View):
     def get(self, request):
-        return render(request, 'users/profile.html')
+        form = ProfileForm(instance=request.user)
+        return render(request, 'users/profile.html', {'form':form})
+    def post(self, request):
+        form = ProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        return render(request, 'users/profile.html', {'form':form})
 

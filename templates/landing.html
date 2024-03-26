@@ -1,22 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Landing Page</title>
-</head>
-<body>
-    <h1>lending page</h1>
-    {% if user.is_authenticated %}
-        <a href="{% url 'users:profile' %}">Profile</a><br>
-        <a href="{% url 'users:logout' %}">Logout</a><br>
-         <a href="{% url 'places:places' %}">Places</a>
-    {% else %}
-         <a href="{% url 'users:register' %}">Register</a><br>
-        <a href="{% url 'users:login' %}">Login</a><br>
-        <a href="{% url 'places:places' %}">Places</a>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+	Landing Page
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

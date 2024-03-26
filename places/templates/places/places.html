@@ -1,18 +1,26 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Place</title>
-</head>
-<body>
-    <ul>
-        {% for place in places %}
-            <a href="{% url 'places:detail' place.pk %}"><li>{{ place.name }}</li></a>
-        {% endfor %}
+{% extends 'base.html' %}
 
-    </ul>
-</body>
-</html>
+{% block title %}
+	Places
+{% endblock %}
+
+{% block content %}
+        <div class="container mt-5">
+            <div class="row">
+                    {% for place in places %}
+                         <div class="col-3">
+                        <div class="card" style="width: 18rem;">
+                          <img src="https://www.shutterstock.com/image-vector/pin-point-logo-can-be-600nw-1679653036.jpg" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ place.name }}</h5>
+                            <p class="card-text">Batafsil ma'lumot olish uchun batafsil tugmasini bosing.</p>
+                            <a href="{% url 'places:detail' place.pk %}" class="btn btn-primary">Batafsil</a>
+                          </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+
+            </div>
+        </div>
+
+{% endblock %}
