@@ -10,7 +10,7 @@
                     {% for place in places %}
                          <div class="col-3">
                         <div class="card" style="width: 18rem;">
-                          <img src="https://www.shutterstock.com/image-vector/pin-point-logo-can-be-600nw-1679653036.jpg" class="card-img-top" alt="...">
+                          <img src="{{ place.image.url }}" class="card-img-top" alt="..." width="200px" height="180px">
                           <div class="card-body">
                             <h5 class="card-title">{{ place.name }}</h5>
                             <p class="card-text">Batafsil ma'lumot olish uchun batafsil tugmasini bosing.</p>

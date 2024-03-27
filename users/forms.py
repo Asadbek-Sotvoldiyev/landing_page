@@ -1,8 +1,5 @@
-from cProfile import Profile
-
 from django import forms
-from django.contrib.auth.models import User
-
+from users.models import User
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control w-100'}))
     email = forms.CharField(label="", widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control w-100'}))
@@ -55,8 +52,9 @@ class ProfileForm(forms.ModelForm):
     last_name = forms.CharField(label="", widget=forms.TextInput(
         attrs={'placeholder': 'Last name', 'class': 'form-control w-100'}))
     email = forms.CharField(disabled=True ,label="", widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'form-control w-100'}))
+    image = forms.ImageField(label="", widget=forms.FileInput(attrs={'class': 'form-control'}))
 
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', "email"]
+        fields = ['username', 'first_name', 'last_name', "email", 'image']

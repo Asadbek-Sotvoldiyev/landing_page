@@ -42,9 +42,13 @@ class ProfileView(View):
         form = ProfileForm(instance=request.user)
         return render(request, 'users/profile.html', {'form':form})
     def post(self, request):
-        form = ProfileForm(request.POST, instance=request.user)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('index')
         return render(request, 'users/profile.html', {'form':form})
+
+class Profile(View):
+    def get(self, request):
+        return render(request, 'users/profile_view.html')
 
