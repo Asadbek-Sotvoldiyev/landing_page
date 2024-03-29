@@ -51,4 +51,3 @@ class ProfileView(View):
 class Profile(View):
     def get(self, request):
         return render(request, 'users/profile_view.html')
-
