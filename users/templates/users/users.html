@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Users
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4 bg-light p-4">
+        {% for us in users %}
+        	<div class="row">
+                <div class="col-1">
+                    <img height="80px" width="80px" style="border-radius: 50%; margin-bottom: 20px" src="{% if us.image %}{{ us.image.url }}{% else %}https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg{% endif %}" alt="">
+                </div>
+            <div class="col-9">
+                <p><b>{{ us.username }}</b></p>
+                <p>{{ us.email }}</p>
+            </div>
+            <div class="col mt-2">
+                {% if us not in requests %}
+                    <a href="{% url 'users:send_request' us.id %}" class="btn btn-outline-primary">Send request</a>
+                {% else %}
+                    <a class="btn btn-outline-secondary">Sent</a>
+                {% endif %}
+            </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

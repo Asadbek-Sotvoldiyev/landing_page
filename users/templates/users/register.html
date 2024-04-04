@@ -10,6 +10,7 @@
             <h2 style="color: #DEE2E6">REGISTER FORM</h2>
             {% csrf_token %}
             {{form.as_p}}
+            <p><a href="{% url 'users:login' %}">Registratsiya qilish</a></p>
             <button type="submit" class="btn btn-outline-success">Register</button>
         </form>
     </div>

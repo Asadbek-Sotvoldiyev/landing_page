@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Users
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4 bg-light p-4">
+        <h1 class="mb-5">Friend Requests</h1>
+        {% for us in networks %}
+        	<div class="row">
+                <div class="col-1">
+                    <img height="80px" width="80px" style="border-radius: 50%; margin-bottom: 20px" src="{% if us.from_user.image %}{{ us.from_user.image.url }}{% else %}https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg{% endif %}" alt="">
+                </div>
+            <div class="col-9">
+                <p><b>{{ us.from_user.username }}</b></p>
+                <p>{{ us.from_user.email }}</p>
+            </div>
+            <div class="col mt-2">
+                <a href="{% url 'users:ignore_friend' us.id %}" class="btn btn-outline-secondary">Ignore</a>
+                <a href="{% url 'users:add_networks' us.id %}" class="btn btn-outline-primary">Accept</a>
+            </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="mt-4 bg-light p-4">
+        <h1 class="mb-5">My Friends</h1>
+        {% for us in my_friends %}
+        	<div class="row">
+                <div class="col-1">
+                    <img height="80px" width="80px" style="border-radius: 50%; margin-bottom: 20px" src="{% if us.image %}{{ us.image.url }}{% else %}https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg{% endif %}" alt="">
+                </div>
+            <div class="col-9">
+                <p><b>{{ us.username }}</b></p>
+                <p>{{ us.email }}</p>
+            </div>
+            <div class="col mt-2">
+                <a href="{% url 'users:delete_friend' us.id %}" class="btn btn-outline-danger">Delete</a>
+            </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

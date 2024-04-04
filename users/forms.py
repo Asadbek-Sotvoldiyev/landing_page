@@ -58,3 +58,16 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', "email", 'image']
+
+class ResetPasswordForm(forms.Form):
+    old_password = forms.CharField(label="",widget=forms.PasswordInput(attrs={'placeholder': 'Old password', 'class': 'form-control w-100'}))
+    new_password = forms.CharField(label="",widget=forms.PasswordInput(attrs={'placeholder': 'New password', 'class': 'form-control w-100'}))
+    confirm_password = forms.CharField(label="",widget=forms.PasswordInput(attrs={'placeholder': 'Confirm password', 'class': 'form-control w-100'}))
+
+    def clean_confirm_password(self):
+        password = self.cleaned_data.get('new_password')
+        password2 = self.cleaned_data.get('confirm_password')
+
+        if password2!=password:
+            raise forms.ValidationError("Passwords don't match")
+        return password
