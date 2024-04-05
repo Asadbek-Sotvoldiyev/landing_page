@@ -12,7 +12,7 @@ urlpatterns = [
     path('logout/',logout_user , name='logout'),
     path('profile/',ProfileView.as_view() , name='profile'),
     path('reset-password/',ResetPasswordView.as_view() , name='reset_password'),
-    path('profileview/',Profile.as_view() , name='profile_view'),
+    path('profile-view/',Profile.as_view() , name='profile_view'),
     path('list/',UsersViews.as_view() , name='users_list'),
 
 #     Friend request

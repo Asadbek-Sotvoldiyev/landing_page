@@ -6,12 +6,6 @@ from .models import Place, Comment
 from .forms import AddCommentForm
 
 
-# class PlacesListView(ListView):
-#     model = Place
-#     context_object_name = 'places'
-#     template_name = 'places/places.html'
-
-
 class PlacesListView(View):
     def get(self, request):
         places = Place.objects.all()
@@ -21,14 +15,14 @@ class PlacesListView(View):
         return render(request, 'places/places.html', {"places": places, 'search_query': search_query})
 
 
-
-
 class PlaceDetail(View):
     def get(self, request, pk):
         form = AddCommentForm()
         place = Place.objects.get(id=pk)
 
         return render(request, 'places/detail.html', {'place': place, 'form':form})
+
+
 class AddCommentView(LoginRequiredMixin,View):
     def post(self, request, pk):
         form = AddCommentForm(request.POST)

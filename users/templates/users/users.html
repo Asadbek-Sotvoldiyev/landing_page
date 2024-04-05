@@ -19,7 +19,7 @@
                 {% if us not in requests %}
                     <a href="{% url 'users:send_request' us.id %}" class="btn btn-outline-primary">Send request</a>
                 {% else %}
-                    <a class="btn btn-outline-secondary">Sent</a>
+                    <button class="btn btn-outline-secondary" disabled>Sent</button>
                 {% endif %}
             </div>
             </div>

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    comments = Comment.objects.exclude(user=request.user).order_by('-created_at')
+    comments = Comment.objects.filter(user__in=request.user.friends.all()).order_by('-created_at')
     days = {}
     for comment in comments:
         days[comment.id] = (datetime.now() - datetime.combine(comment.created_at, datetime.min.time())).days
